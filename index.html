@@ -54,7 +54,7 @@
                 <span class="method-icon" aria-hidden="true">
                   <svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="14"/><path d="M24 3v8M24 37v8M3 24h8M37 24h8M9 9l6 6M33 33l6 6M39 9l-6 6M15 33l-6 6"/></svg>
                 </span>
-                <span class="method-title">Fixstern-<br />Kalibrierung</span>
+                <span class="method-title">Fixstern-Kalibrierung</span>
                 <span class="method-description">Richte das Teleskop auf einen bekannten, hellen Stern aus.</span>
                 <span class="card-link">STERN AUSWÄHLEN <span aria-hidden="true">→</span></span>
               </button>
@@ -64,7 +64,7 @@
                 <span class="method-icon compass-icon" aria-hidden="true">
                   <svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="18"/><path d="m29 17-3 9-9 3 3-9 9-3Z"/><path d="M24 3v5M24 40v5M3 24h5M40 24h5"/></svg>
                 </span>
-                <span class="method-title">Geografische<br />Ausrichtung</span>
+                <span class="method-title">Geografische Ausrichtung</span>
                 <span class="method-description">Nutze Norden und den Horizont als zuverlässige Referenz.</span>
                 <span class="card-link">AUSRICHTEN <span aria-hidden="true">→</span></span>
               </button>
@@ -74,7 +74,7 @@
 
         <section class="screen" data-screen="star" aria-labelledby="star-title" hidden>
           <div class="content-wrap content-wrap--narrow">
-            <button class="back-button" type="button" data-action="show-method"><span aria-hidden="true">←</span> Methoden</button>
+            <button class="back-button" type="button" data-action="back" aria-label="Zurück zur Methodenauswahl"><span aria-hidden="true">←</span> Zurück</button>
             <p class="eyebrow">FIXSTERN-KALIBRIERUNG</p>
             <h1 id="star-title">Wähle deinen<br />Referenzstern</h1>
             <p class="lead">Wähle einen Stern, den du deutlich sehen und sicher identifizieren kannst.</p>
@@ -113,7 +113,7 @@
 
         <section class="screen" data-screen="geo" aria-labelledby="geo-title" hidden>
           <div class="content-wrap content-wrap--narrow">
-            <button class="back-button" type="button" data-action="show-method"><span aria-hidden="true">←</span> Methoden</button>
+            <button class="back-button" type="button" data-action="back" aria-label="Zurück zur Methodenauswahl"><span aria-hidden="true">←</span> Zurück</button>
             <p class="eyebrow">GEOGRAFISCHE AUSRICHTUNG</p>
             <h1 id="geo-title">Norden finden.<br />Waagrecht halten.</h1>
             <p class="lead">Bringe dein Teleskop in die definierte Ausgangsposition.</p>
@@ -148,7 +148,7 @@
             </div>
 
             <button class="primary-button primary-button--compact" type="button" data-action="restart">Neue Kalibrierung</button>
-            <p class="countdown">Automatische Rückkehr in <strong id="countdown">12</strong> Sekunden</p>
+            <p class="countdown" hidden>Automatische Rückkehr in <strong id="countdown">12</strong> Sekunden</p>
           </div>
         </section>
       </main>

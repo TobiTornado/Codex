@@ -4,12 +4,15 @@ const finishStarButton = document.querySelector('[data-action="finish-star"]');
 const starInstruction = document.querySelector("#star-instruction p");
 const resultScreen = document.querySelector('[data-screen="result"]');
 const countdownElement = document.querySelector("#countdown");
+const countdownNotice = document.querySelector(".countdown");
 
 let selectedStar = "";
 let countdownTimer;
+let currentScreen = "start";
 
 function showScreen(name) {
   clearInterval(countdownTimer);
+  currentScreen = name;
 
   screens.forEach((screen) => {
     const isTarget = screen.dataset.screen === name;
@@ -19,8 +22,10 @@ function showScreen(name) {
 
   window.scrollTo({ top: 0, behavior: "smooth" });
 
-  const heading = document.querySelector(`[data-screen="${name}"] h1`);
-  if (name !== "start" && heading) {
+  const heading = name === "start"
+    ? document.querySelector(".start-trigger")
+    : document.querySelector(`[data-screen="${name}"] h1`);
+  if (heading) {
     heading.setAttribute("tabindex", "-1");
     requestAnimationFrame(() => heading.focus({ preventScroll: true }));
   }
@@ -32,7 +37,13 @@ function resetCalibration() {
   finishStarButton.disabled = true;
   starInstruction.textContent = "Wähle oben einen Referenzstern aus.";
   resultScreen.classList.remove("screen--error");
+  countdownNotice.hidden = true;
   showScreen("start");
+}
+
+function goBack() {
+  if (currentScreen === "star" || currentScreen === "geo") showScreen("method");
+  else if (currentScreen === "method") showScreen("start");
 }
 
 function showResult(success = true) {
@@ -50,9 +61,10 @@ function showResult(success = true) {
     ? "Die Kalibrierung war erfolgreich. Dein Teleskop ist jetzt ausgerichtet."
     : "Die Kalibrierung konnte nicht gespeichert werden. Bitte wiederhole den Vorgang.";
   quaternion.hidden = !success;
+  countdownNotice.hidden = success;
 
   showScreen("result");
-  startCountdown();
+  if (!success) startCountdown();
 }
 
 function startCountdown() {
@@ -79,9 +91,11 @@ document.addEventListener("click", (event) => {
 
   event.preventDefault();
   const action = control.dataset.action;
+  if (currentScreen === "result" && action !== "restart") return;
 
-  if (action === "begin" || action === "show-method") showScreen("method");
-  if (action === "back" || action === "restart") resetCalibration();
+  if (action === "begin") showScreen("method");
+  if (action === "back") goBack();
+  if (action === "restart") resetCalibration();
   if (action === "choose-method") showScreen(control.dataset.method);
   if (action === "finish-star" && selectedStar) showResult(true);
   if (action === "finish-geo") showResult(true);
