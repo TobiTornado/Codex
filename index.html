@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#0b0e13" />
+    <title>Polaris · Teleskop-Kalibrierung</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="app-header" aria-label="Anwendungskopf">
+        <a class="brand" href="#start" data-action="restart" aria-label="Zur Startseite">
+          <span class="brand-mark" aria-hidden="true"><span></span></span>
+          <span>POLARIS</span>
+        </a>
+        <div class="connection-status" title="Verbindung zum Teleskop">
+          <span class="status-dot" aria-hidden="true"></span>
+          <span>TELESKOP BEREIT</span>
+        </div>
+      </header>
+
+      <main id="app" class="app-main">
+        <section class="screen screen--start is-active" data-screen="start" aria-labelledby="start-title">
+          <button class="start-trigger" type="button" data-action="begin">
+            <span class="orbit-visual" aria-hidden="true">
+              <span class="orbit orbit--outer"></span>
+              <span class="orbit orbit--inner"></span>
+              <span class="orbit-core">
+                <svg viewBox="0 0 24 24" role="presentation"><path d="M12 5v14M5 12h14M16 8l3-3M16 16l3 3M8 8 5 5M8 16l-3 3" /></svg>
+              </span>
+            </span>
+            <span class="eyebrow">PUSH-TO SYSTEM</span>
+            <span class="start-title" id="start-title">Kalibrierung<br />starten</span>
+            <span class="start-copy">Tippe irgendwo, um dein Teleskop auszurichten.</span>
+            <span class="tap-hint"><span aria-hidden="true">↑</span> ZUM STARTEN TIPPEN</span>
+          </button>
+        </section>
+
+        <section class="screen" data-screen="method" aria-labelledby="method-title" hidden>
+          <div class="content-wrap">
+            <button class="back-button" type="button" data-action="back" aria-label="Zurück zur Startseite">
+              <span aria-hidden="true">←</span> Zurück
+            </button>
+            <div class="step-label"><span>01</span><span class="step-line"></span><span>02</span></div>
+            <p class="eyebrow">KALIBRIERUNG</p>
+            <h1 id="method-title">Wie möchtest du<br />dich ausrichten?</h1>
+            <p class="lead">Wähle die Methode, die am besten zu deiner aktuellen Umgebung passt.</p>
+
+            <div class="method-grid">
+              <button class="method-card" type="button" data-action="choose-method" data-method="star">
+                <span class="card-number">01</span>
+                <span class="method-icon" aria-hidden="true">
+                  <svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="14"/><path d="M24 3v8M24 37v8M3 24h8M37 24h8M9 9l6 6M33 33l6 6M39 9l-6 6M15 33l-6 6"/></svg>
+                </span>
+                <span class="method-title">Fixstern-<br />Kalibrierung</span>
+                <span class="method-description">Richte das Teleskop auf einen bekannten, hellen Stern aus.</span>
+                <span class="card-link">STERN AUSWÄHLEN <span aria-hidden="true">→</span></span>
+              </button>
+
+              <button class="method-card" type="button" data-action="choose-method" data-method="geo">
+                <span class="card-number">02</span>
+                <span class="method-icon compass-icon" aria-hidden="true">
+                  <svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="18"/><path d="m29 17-3 9-9 3 3-9 9-3Z"/><path d="M24 3v5M24 40v5M3 24h5M40 24h5"/></svg>
+                </span>
+                <span class="method-title">Geografische<br />Ausrichtung</span>
+                <span class="method-description">Nutze Norden und den Horizont als zuverlässige Referenz.</span>
+                <span class="card-link">AUSRICHTEN <span aria-hidden="true">→</span></span>
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <section class="screen" data-screen="star" aria-labelledby="star-title" hidden>
+          <div class="content-wrap content-wrap--narrow">
+            <button class="back-button" type="button" data-action="show-method"><span aria-hidden="true">←</span> Methoden</button>
+            <p class="eyebrow">FIXSTERN-KALIBRIERUNG</p>
+            <h1 id="star-title">Wähle deinen<br />Referenzstern</h1>
+            <p class="lead">Wähle einen Stern, den du deutlich sehen und sicher identifizieren kannst.</p>
+
+            <fieldset class="star-list">
+              <legend class="sr-only">Referenzstern auswählen</legend>
+              <label class="star-option">
+                <input type="radio" name="star" value="Vega" />
+                <span class="radio-mark"></span><span class="star-name">Vega</span><span class="star-meta">LEIER · MAG 0,03</span>
+              </label>
+              <label class="star-option">
+                <input type="radio" name="star" value="Arcturus" />
+                <span class="radio-mark"></span><span class="star-name">Arcturus</span><span class="star-meta">BÄRENHÜTER · MAG −0,05</span>
+              </label>
+              <label class="star-option">
+                <input type="radio" name="star" value="Capella" />
+                <span class="radio-mark"></span><span class="star-name">Capella</span><span class="star-meta">FUHRMANN · MAG 0,08</span>
+              </label>
+              <label class="star-option">
+                <input type="radio" name="star" value="Altair" />
+                <span class="radio-mark"></span><span class="star-name">Altair</span><span class="star-meta">ADLER · MAG 0,76</span>
+              </label>
+              <label class="star-option">
+                <input type="radio" name="star" value="Deneb" />
+                <span class="radio-mark"></span><span class="star-name">Deneb</span><span class="star-meta">SCHWAN · MAG 1,25</span>
+              </label>
+            </fieldset>
+
+            <div class="instruction-panel" id="star-instruction" aria-live="polite">
+              <span class="instruction-index">NÄCHSTER SCHRITT</span>
+              <p>Wähle oben einen Referenzstern aus.</p>
+            </div>
+            <button class="primary-button" type="button" data-action="finish-star" disabled>Kalibrierung abschließen <span>→</span></button>
+          </div>
+        </section>
+
+        <section class="screen" data-screen="geo" aria-labelledby="geo-title" hidden>
+          <div class="content-wrap content-wrap--narrow">
+            <button class="back-button" type="button" data-action="show-method"><span aria-hidden="true">←</span> Methoden</button>
+            <p class="eyebrow">GEOGRAFISCHE AUSRICHTUNG</p>
+            <h1 id="geo-title">Norden finden.<br />Waagrecht halten.</h1>
+            <p class="lead">Bringe dein Teleskop in die definierte Ausgangsposition.</p>
+
+            <div class="alignment-visual" aria-hidden="true">
+              <span class="north-label">N</span>
+              <span class="compass-ring"><span class="needle"></span></span>
+              <span class="level"><span class="level-line"></span><span class="level-bubble"></span></span>
+            </div>
+
+            <ol class="alignment-steps">
+              <li><span>01</span><p><strong>Tubus nach Norden</strong>Richte den Tubus mithilfe eines Kompasses exakt Richtung Norden aus.</p></li>
+              <li><span>02</span><p><strong>Tubus waagrecht</strong>Nutze eine Wasserwaage, um den Tubus horizontal auszurichten.</p></li>
+            </ol>
+
+            <div class="tip"><span aria-hidden="true">i</span><p>Halte magnetische Gegenstände vom Kompass fern, um Messfehler zu vermeiden.</p></div>
+            <button class="primary-button" type="button" data-action="finish-geo">Ausrichtung ist fertig <span>→</span></button>
+          </div>
+        </section>
+
+        <section class="screen" data-screen="result" aria-labelledby="result-title" hidden>
+          <div class="result-content">
+            <div class="result-symbol" aria-hidden="true"><span class="result-symbol-inner">✓</span></div>
+            <p class="eyebrow" id="result-eyebrow">KALIBRIERUNG ABGESCHLOSSEN</p>
+            <h1 id="result-title">Bereit für<br />die Sterne.</h1>
+            <p class="lead" id="result-message">Die Kalibrierung war erfolgreich. Dein Teleskop ist jetzt ausgerichtet.</p>
+
+            <div class="quaternion-card" id="quaternion-card">
+              <span>GESPEICHERTER QUATERNION</span>
+              <code>0.9239 + 0.0000i + 0.3827j + 0.0000k</code>
+              <small>WURDE IM SYSTEM GESPEICHERT</small>
+            </div>
+
+            <button class="primary-button primary-button--compact" type="button" data-action="restart">Neue Kalibrierung</button>
+            <p class="countdown">Automatische Rückkehr in <strong id="countdown">12</strong> Sekunden</p>
+          </div>
+        </section>
+      </main>
+
+      <footer class="app-footer">
+        <span>LOCAL · ESP PUSH-TO</span>
+        <span>v1.0</span>
+      </footer>
+    </div>
+  </body>
+</html>
