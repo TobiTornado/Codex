@@ -4,7 +4,6 @@ const finishStarButton = document.querySelector('[data-action="finish-star"]');
 const starInstruction = document.querySelector("#star-instruction p");
 const resultScreen = document.querySelector('[data-screen="result"]');
 const countdownElement = document.querySelector("#countdown");
-const countdownMessage = document.querySelector("#countdown-message");
 
 let selectedStar = "";
 let countdownTimer;
@@ -51,10 +50,9 @@ function showResult(success = true) {
     ? "Die Kalibrierung war erfolgreich. Dein Teleskop ist jetzt ausgerichtet."
     : "Die Kalibrierung konnte nicht gespeichert werden. Bitte wiederhole den Vorgang.";
   quaternion.hidden = !success;
-  countdownMessage.hidden = success;
 
   showScreen("result");
-  if (!success) startCountdown();
+  startCountdown();
 }
 
 function startCountdown() {

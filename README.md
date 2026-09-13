@@ -19,10 +19,6 @@ Danach `http://localhost:8000` im Browser öffnen.
 3. Den Anweisungen zur Ausrichtung folgen
 4. Beispiel-Quaternion anzeigen und speichern
 
-Nach einer erfolgreichen Kalibrierung bleibt das Ergebnis stehen. Nur nach
-einem Fehler kehrt die Anwendung nach zwölf Sekunden automatisch zum Start
-zurück.
-
 Die eigentliche Kommunikation mit dem ESP ist noch nicht angebunden. Der
 Erfolgszustand und der Quaternion-Wert sind momentan Demo-Daten.
 
